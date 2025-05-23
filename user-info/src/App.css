@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #c3dafe, #fcd34d);
+  min-height: 100vh;
+  color: #333;
+}
+
+.app-container {
+  padding: 20px;
+}
+
+.navbar {
+  background-color: rgba(0, 64, 128, 0.85);
+  padding: 20px;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.navbar p {
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+.user-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.user-card {
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, ;
+}
+
+.user-card:hover {
+  scale: 1.02;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+
