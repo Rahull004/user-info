@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
 
-export default function Navbar() {
+const Navbar = ({ userCount = 50 }) => {
   return (
-    <nav className="navbar">
+    <div className="navbar">
       <h1>User Directory</h1>
-      <p>50 Users | Theme: Corporate</p>
-    </nav>
+      <p>{userCount} Users | Theme: Corporate</p>
+    </div>
   );
-}
+};
+
+export default Navbar;

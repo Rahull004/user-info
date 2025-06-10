@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
-import UserCard from "./components/UserCard";
+import UserDirectory from "./components/UserDirectory";
+import UserProfile from "./components/UserProfile";
+import Footer from "./components/Footer";
 import "./App.css";
-import Navbar from "./components/Navbar";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 10;
 
   useEffect(() => {
     axios
@@ -21,20 +25,35 @@ function App() {
       });
   }, []);
 
+
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+ 
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="app-container">
-      <Navbar />
-      <div>
-        {loading ? (
-          <p>Loading users...</p>
-        ) : (
-          <div className="user-grid">
-            {users.map((user) => (
-              <UserCard key={user.id} user={user} />
-            ))}
-          </div>
-        )}
-      </div>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <UserDirectory
+                users={currentUsers}
+                loading={loading}
+                usersPerPage={usersPerPage}
+                totalUsers={users.length}
+                currentPage={currentPage}
+                paginate={paginate}
+              />
+            }
+          />
+          <Route path="/user/:id" element={<UserProfile users={users} />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
